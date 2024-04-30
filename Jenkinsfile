@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Generate Surefire Report') {
             steps {
-                bat 'mvn surefire-report:report'
+                bat 'mvn -DskipTests surefire-report:report'
             }
             post {
                 always {
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Generate Javadoc') {
             steps {
-                bat 'mvn javadoc:jar'
+                bat 'mvn -DskipTests javadoc:jar'
             }
             post {
                 always {
