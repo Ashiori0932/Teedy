@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Generate Javadoc') {
             steps {
-                bat 'mvn -DskipTests javadoc:jar -Xdoclint:none'
+                bat 'mvn -DskipTests javadoc:jar'
             }
             post {
                 always {
