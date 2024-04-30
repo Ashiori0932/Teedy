@@ -11,6 +11,32 @@ pipeline {
                 bat 'mvn pmd:pmd'
             }
         }
+        stage('Generate Surefire Report') {
+            steps {
+                bat 'mvn -DskipTests surefire-report:report'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: '**/target/site/surefire-report.html', fingerprint: true
+                }
+            }
+        }
+        stage('Generate Javadoc') {
+            steps {
+                bat 'mvn -DskipTests javadoc:jar -Xdoclint:none'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: '**/target/apidocs/**/*.jar', fingerprint: true
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
     }
   
     post {
