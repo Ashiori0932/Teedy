@@ -11,11 +11,6 @@ pipeline {
                 bat 'mvn pmd:pmd'
             }
         }
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
-        }
         stage('Generate Surefire Report') {
             steps {
                 bat 'mvn -DskipTests surefire-report:report'
@@ -36,6 +31,12 @@ pipeline {
                 }
             }
         }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
     }
   
     post {
