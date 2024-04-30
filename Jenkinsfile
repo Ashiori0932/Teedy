@@ -27,7 +27,7 @@ pipeline {
             }
             post {
                 always {
-                    archiveArtifacts artifacts: '**/target/apidocs/**/*.jar', fingerprint: true
+                    archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
                 }
             }
         }
